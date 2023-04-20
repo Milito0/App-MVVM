@@ -3,13 +3,14 @@ package com.appmvvm.data
 import com.appmvvm.data.model.QuoteModel
 import com.appmvvm.data.model.QuoteProvider
 import com.appmvvm.data.network.QuoteService
+import javax.inject.Inject
 
-class QuoteRepository {
-
-    private val api = QuoteService()
-
+class QuoteRepository @Inject constructor(
+    private val api : QuoteService,
+    private val quoteProvider: QuoteProvider
+){
     suspend fun getAllQuotes(): List<QuoteModel> {
-        QuoteProvider.quotes = api.getQuotes()
-        return QuoteProvider.quotes
+        quoteProvider.quotes = api.getQuotes()
+        return quoteProvider.quotes
     }
 }
