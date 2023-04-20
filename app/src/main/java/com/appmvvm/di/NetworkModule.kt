@@ -1,5 +1,6 @@
 package com.appmvvm.di
 
+import com.appmvvm.data.network.QuoteApiClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,7 +12,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-
     @Singleton
     @Provides
     fun provideRetrofit():Retrofit{
@@ -20,5 +20,11 @@ object NetworkModule {
             .addConverterFactory(
                 GsonConverterFactory.create()
             ).build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideQuoteApiClient(retrofit: Retrofit):QuoteApiClient{
+        return retrofit.create(QuoteApiClient::class.java)
     }
 }

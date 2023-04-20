@@ -10,7 +10,8 @@ class QuoteRepository @Inject constructor(
     private val quoteProvider: QuoteProvider
 ){
     suspend fun getAllQuotes(): List<QuoteModel> {
-        quoteProvider.quotes = api.getQuotes()
-        return quoteProvider.quotes
+        val response = api.getQuotes()
+        quoteProvider.quotes = response
+        return response
     }
 }
