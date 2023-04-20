@@ -1,5 +1,6 @@
 package com.appmvvm.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -26,6 +27,8 @@ class QuoteViewModel @Inject constructor(
             if(!result.isNullOrEmpty()){
                 quoteModel.postValue(result[0])
                 isLoading.postValue(false)
+            }else{
+                Log.i("Milito", result.isNullOrEmpty().toString())
             }
         }
     }
